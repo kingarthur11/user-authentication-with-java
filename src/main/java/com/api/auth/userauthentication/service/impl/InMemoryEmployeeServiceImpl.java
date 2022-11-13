@@ -2,6 +2,7 @@
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.api.auth.userauthentication.model.Employee;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
+@Qualifier(value = "inMemory")
 public class InMemoryEmployeeServiceImpl implements EmployeeService {
 
 	private final InMemoryEmployeeRepository inMemoryEmployeeRepository;
@@ -28,19 +30,19 @@ public class InMemoryEmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee findById(Integer id) {
+	public Employee findById(Long id) {
 		// TODO Auto-generated method stub
 		return inMemoryEmployeeRepository.findById(id);
 	}
 
 	@Override
-	public Employee updateEmployee(Employee employee, Integer id) {
+	public Employee updateEmployee(Employee employee, Long id) {
 		// TODO Auto-generated method stub
 		return inMemoryEmployeeRepository.updateEmployee(employee, id);
 	}
 
 	@Override
-	public Boolean deleteById(Integer id) {
+	public Boolean deleteById(Long id) {
 		// TODO Auto-generated method stub
 		return inMemoryEmployeeRepository.deleteById(id);
 	}

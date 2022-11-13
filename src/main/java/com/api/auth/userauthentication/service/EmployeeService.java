@@ -10,10 +10,10 @@ public interface EmployeeService {
 	
 	List<Employee> getAllEmployees();
 	
-	Employee findById(Integer id);
+	Employee findById(Long id);
 	
-	Employee updateEmployee(Employee employee, Integer id);
+	Employee updateEmployee(Employee employee, Long id);
 	
-	Boolean deleteById(Integer id);
+	Boolean deleteById(Long id);
 
 }

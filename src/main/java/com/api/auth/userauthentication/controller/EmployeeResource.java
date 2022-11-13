@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +23,16 @@ import com.api.auth.userauthentication.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @RequestMapping(path = "api/employees")
 public class EmployeeResource {
 	
 	private final EmployeeService employeeService;
+	
+	public EmployeeResource(@Qualifier(value = "postgresSQLService") EmployeeService employeeService) {
+		this.employeeService = employeeService;
+	}
+	
 	
 	private final Logger LOGGER = LoggerFactory.getLogger(EmployeeResource.class);
 
@@ -36,7 +42,7 @@ public class EmployeeResource {
 	}
 	
 	@GetMapping ("{id}")
-	public ResponseEntity<Employee> getEmployee(@PathVariable("id") Integer id) {
+	public ResponseEntity<Employee> getEmployee(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(employeeService.findById(id));
 	}
 	
@@ -52,19 +58,12 @@ public class EmployeeResource {
 	}
 
 	@DeleteMapping ("{id}")
-	public ResponseEntity<Boolean> deleteEmployee(@PathVariable("id") Integer id) {
+	public ResponseEntity<Boolean> deleteEmployee(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(employeeService.deleteById(id));
 	}
 	
-//	@PutMapping  ("{id}")
-//	public ResponseEntity<Employee> updateEmployee(@RequestBody @PathVariable("id") Employee employee, Integer id ) {
-//		LOGGER.info("this is a save endpoint" + employee);
-//		return employee;
-////		return ResponseEntity.ok(employeeService.updateEmployee(employee, id));
-//	}
-	
 	@PutMapping  ("{id}")
-	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable("id") Integer id ) {
+	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable("id") Long id ) {
 		LOGGER.info("this is a save endpoint" + employee);
 		return ResponseEntity.ok(employeeService.updateEmployee(employee, id));
 	}
