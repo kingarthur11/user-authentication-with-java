@@ -32,13 +32,13 @@ public class JpaEmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee findById(Long id) {
+	public Employee findById(Integer id) {
 		// TODO Auto-generated method stub
 		return jpaEmployeeRepository.findById(id).get();
 	}
 
 	@Override
-	public Employee updateEmployee(Employee employee, Long id) {
+	public Employee updateEmployee(Employee employee, Integer id) {
 		// TODO Auto-generated method stub
 		Employee employDB = jpaEmployeeRepository.findById(id).get();
 		
@@ -50,9 +50,9 @@ public class JpaEmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Boolean deleteById(Long id) {
+	public Boolean deleteById(Integer id) {
 		// TODO Auto-generated method stub
-		jpaEmployeeRepository.deleteById(null);;
+		jpaEmployeeRepository.deleteById(id);;
 		return true;
 	}
 

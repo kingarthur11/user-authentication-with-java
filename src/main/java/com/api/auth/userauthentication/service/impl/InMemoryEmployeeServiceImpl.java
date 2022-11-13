@@ -30,19 +30,19 @@ public class InMemoryEmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public Employee findById(Long id) {
+	public Employee findById(Integer id) {
 		// TODO Auto-generated method stub
 		return inMemoryEmployeeRepository.findById(id);
 	}
 
 	@Override
-	public Employee updateEmployee(Employee employee, Long id) {
+	public Employee updateEmployee(Employee employee, Integer id) {
 		// TODO Auto-generated method stub
 		return inMemoryEmployeeRepository.updateEmployee(employee, id);
 	}
 
 	@Override
-	public Boolean deleteById(Long id) {
+	public Boolean deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		return inMemoryEmployeeRepository.deleteById(id);
 	}

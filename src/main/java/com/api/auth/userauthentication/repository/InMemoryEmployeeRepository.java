@@ -29,11 +29,11 @@ public class InMemoryEmployeeRepository {
 		return List.copyOf(DATABASE);
 	}
 	
-	public Employee findById(Long id) {
+	public Employee findById(Integer id) {
 		return DATABASE.stream().filter(empl -> id.equals(empl.getId())).findFirst().orElseThrow();
 	}
 	
-	public Employee updateEmployee(Employee employee, Long id) {
+	public Employee updateEmployee(Employee employee, Integer id) {
 		Employee emploDB = DATABASE.stream().filter(empl -> id.equals(empl.getId())).findFirst().orElseThrow();
 		emploDB.setFirstName(employee.getFirstName());
 		emploDB.setLastName(employee.getLastName());
@@ -42,7 +42,7 @@ public class InMemoryEmployeeRepository {
 		return emploDB;
 	}
 	
-	public Boolean deleteById(Long id) {
+	public Boolean deleteById(Integer id) {
 		Employee emploDB = DATABASE.stream().filter(empl -> id.equals(empl.getId())).findFirst().orElseThrow();
 		DATABASE.remove(emploDB);
 		return true;

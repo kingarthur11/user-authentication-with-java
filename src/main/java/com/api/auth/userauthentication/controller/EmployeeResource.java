@@ -42,7 +42,7 @@ public class EmployeeResource {
 	}
 	
 	@GetMapping ("{id}")
-	public ResponseEntity<Employee> getEmployee(@PathVariable("id") Long id) {
+	public ResponseEntity<Employee> getEmployee(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok(employeeService.findById(id));
 	}
 	
@@ -58,12 +58,13 @@ public class EmployeeResource {
 	}
 
 	@DeleteMapping ("{id}")
-	public ResponseEntity<Boolean> deleteEmployee(@PathVariable("id") Long id) {
-		return ResponseEntity.ok(employeeService.deleteById(id));
+	public boolean deleteEmployee(@PathVariable("id") Integer id) {
+		ResponseEntity.ok(employeeService.deleteById(id));
+		return true;
 	}
 	
 	@PutMapping  ("{id}")
-	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable("id") Long id ) {
+	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable("id") Integer id ) {
 		LOGGER.info("this is a save endpoint" + employee);
 		return ResponseEntity.ok(employeeService.updateEmployee(employee, id));
 	}
